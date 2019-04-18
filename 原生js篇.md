@@ -5,4 +5,12 @@
  (4)如果构造函数有返回值并且返回值类型为一个对象或一个函数，那么就优先返回原有的返回值，如果返回值是基本类型或无返回值默认返回新创建的新对象obj.
  
  2、改变this指向常用的方法call,apply,bind <br>
-  
+  (1)call的用法：函数.call(要绑定的上下文对象，参数，参数)注意参数要用逗号分隔开。
+   内部实现方法
+   ```javascript
+   Funciton.prototype.callFn=function(context,...args){
+    //注意此处不能使用箭头函数，因为箭头函数的this会绑定它定义时所在的上下文对象，也就是此处的Funciton.prototype对象
+    //首先
+    if(!context){ context=window}
+   }
+   ```
