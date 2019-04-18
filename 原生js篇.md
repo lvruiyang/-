@@ -34,4 +34,25 @@
    ![image](https://github.com/lvruiyang/myKnowledge/blob/master/images/1555581079(1).jpg)
    
    (2)apply用法跟call一样，除了参数必须是数组类型的，即函数名.apply(要绑定的上下文对象,[参数，参数])
-   (3)bind的用法，就是
+   (3)bind的用法，就是返回一个绑定目标上下文对象的函数，即函数名.bind(要绑定的上下文，参数，参数);
+   简易实现方法：
+   ```
+   Function.prototype.bindFn=function(context,...args){
+   	var self=this;
+	return function(newArgs){
+		return self.apply(context,args.concat[newArgs]);	
+	}
+   }
+   //另外因为bind函数返回的函数还可以当做构造函数使用，所以需要把上面的改写一下
+   Function.prototype.bindFn2=function(context,...args){
+   	var self=this;
+	var fn= function(newArgs){
+		return self.apply(this instanceof bindFn2 ? this : context,args.concat[newArgs]);	
+	}
+	//fn.prototype=Object.create(this.prototype);下面是Object.create的实现方法
+	var emptyFn=function(){};
+	emptyFn.prototype=this.protoytpe;
+	fn.prototype=new emptyFn();
+	return fn;
+   }
+   ```
