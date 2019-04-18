@@ -14,7 +14,7 @@
     //如 1=>Number,'aa'=>String
      context=context?Object(context):window;
      //然后把函数添加到上下文对象对象中
-     //这里有个问题，如何防止添加的函数名fn不予对象原有的属性名冲突，可以先判断属性名是否存在
+     //这里有个问题，如何防止添加的函数名fn不予对象原有的属性名冲突，可以先判断属性名是否存在，es6中的Symbol非常适合解决此类命名冲突问题
      var fn=fnFactory(context);
      context[fn]=this;
      //然后执行函数,然后删除函数
@@ -30,3 +30,7 @@
      return unique_fn;
    }
    ```
+   //这里有个问题,就是
+   
+   (2)apply用法跟call一样，除了参数必须是数组类型的，即函数名.apply(要绑定的上下文对象,[参数，参数])
+   (3)bind的用法，就是
