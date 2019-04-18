@@ -10,7 +10,23 @@
    ```javascript
    Funciton.prototype.callFn=function(context,...args){
     //注意此处不能使用箭头函数，因为箭头函数的this会绑定它定义时所在的上下文对象，也就是此处的Funciton.prototype对象
-    //首先
-    if(!context){ context=window}
+    //首先context可以传任意值基本数据类型、对象、null,undefined,若果为null或undefined，context默认指向window对象，其他的都会默认转换成对象类型
+    //如 1=>Number,'aa'=>String
+     context=context?Object(context):window;
+     //然后把函数添加到上下文对象对象中
+     //这里有个问题，如何防止添加的函数名fn不予对象原有的属性名冲突，可以先判断属性名是否存在
+     var fn=fnFactory(context);
+     context[fn]=this;
+     //然后执行函数,然后删除函数
+     context.fn(...args)
+     delete context[fn]
+   }
+   //首先判断 context中是否存在属性 fn，如果存在那就随机生成一个属性fnxx，然后循环查询 context 对象中是否存在属性 fnxx。如果不存在则返回最终值
+   function fnFactory(context) {
+	    var unique_fn = "fn";
+     while (context.hasOwnProperty(unique_fn)) {
+    	 unique_fn = "fn" + Math.random(); // 循环判断并重新赋值
+     }
+     return unique_fn;
    }
    ```
