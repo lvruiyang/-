@@ -30,7 +30,7 @@
      return unique_fn;
    }
    ```
-   //这里有个问题,就是如图：
+   //这里有个问题,就是如图：多个call连续调用的时候，明明是函数，调用时却报错 <br>
    ![image](https://github.com/lvruiyang/myKnowledge/blob/master/images/1555581079(1).jpg)
    
    (2)apply用法跟call一样，除了参数必须是数组类型的，即函数名.apply(要绑定的上下文对象,[参数，参数])
