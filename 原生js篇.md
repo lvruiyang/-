@@ -79,7 +79,8 @@
     obj._proto_ => Func.prototype => Function.prototype => Object.prototype => null;
     //构造函数的原型链<br>
     Function.prototype => Object.prototype => null;
- ## 5、js的继承
+ ## 5、js的继承 [木易杨的github]（https://github.com/yygmind/blog/issues/7）
     继承说白了就是子类想要拥有父类对象和方法的使用权，要不把属性和方法复制到自己身上，要不可以通过原型链访问到。
     (1)原型继承
       就是Child.prototype= new Parent();
+   
