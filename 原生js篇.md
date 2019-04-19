@@ -36,7 +36,7 @@
    (2)apply用法跟call一样，除了参数必须是数组类型的，即函数名.apply(要绑定的上下文对象,[参数，参数])
    (3)bind的用法，就是返回一个绑定目标上下文对象的函数，即函数名.bind(要绑定的上下文，参数，参数);
    简易实现方法：
-   ```
+   ```javascript
    Function.prototype.bindFn=function(context,...args){
    	var self=this;
 	return function(newArgs){
@@ -86,7 +86,7 @@
       缺点：父类上的引用类型属性被所以实例共享，容易被篡改，并且不能向父类构造函数中传值。<br>
    (2)借用构造函数继承<br>
     
-    ```
+    ```javascript
     	function Parent(){}
 	function Child(){
 	        Parent.call(this);//通过调用call方法，把父类构造函数中的属性复制到子类实例上。
@@ -95,7 +95,7 @@
     ```
        缺点：这种方法只能继承父类实例上的属性，不能继承父类原型链上的属性，并且父类上的方法定义在构造函数内部的话，无法实现复用，每个子类都有父类实例函数的副本，影响性能。<br>
  (3)组合继承<br>
- ```
+```javascript
         function Parent(){
      	}
 	function Child(){
@@ -108,8 +108,8 @@
 	第二次调用SuperType()：给instance1写入两个属性name，color。
 	实例对象instance1上的两个属性就屏蔽了其原型对象SubType.prototype的两个同名属性。所以，组合模式的缺点就是在使用子类创建实例对象时，其原型中会存在两份相同的属性/方法。
   (4)寄生组合式继承 <br>
-  ```
-        function Parent(){
+```javascript
+	function Parent(){
         }
 	function Child(){
 	        Parent.call(this);//通过调用call方法，把父类构造函数中的属性复制到子类实例上。
@@ -127,7 +127,7 @@
  (2)子类构造函数可以访问父类构造函数上的静态方法
  	Child._proto_ => Parent <br>
 ES5实现方法：
-```
+```javascript
     function Parent(){
      }
      function Child(){
@@ -142,7 +142,7 @@ ES5实现方法：
    1、基本类型 --> 保存在栈内存中，因为这些类型在内存中分别占有固定大小的空间，通过按值来访问。基本类型一共有6种：Undefined、Null、Boolean、Number 、String和Symbol <br>
    2、引用类型 --> 保存在堆内存中，因为这种值的大小不固定，因此不能把它们保存到栈内存中，但内存地址大小是固定的，因此保存在堆内存中，在栈内存中存放的只是该对象的访问地址。当查询引用类型的变量时， 先从栈中读取内存地址， 然后再通过地址找到堆中的值。对于这种，我们把它叫做按引用访问。<br>
    基本类型的赋值都是值复制，引用类型的赋值都是内存地址的复制，可以有多个变量指向同一个对象。<br>
-   ```
+```javascript
    var a = 20;
    var b = a;
    b = 30;
@@ -174,7 +174,7 @@ ES5实现方法：
 	5、不能正确处理new Date()
 	6、不能处理正则
 实现一个深拷贝方法:
-```
+```javascript
 funciton deepCopy(target){
 	let child;
 	if(!target || typeof target !=Object){
