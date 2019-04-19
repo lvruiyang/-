@@ -72,12 +72,12 @@
     ```
     //构造函数
     funciton Func(){}
+    Func.prototype.constructor=Func;
     //实例对象
     var obj=new Func();
+    obj.constructor=Func;
     //对象的原型链
     obj._proto_ => Func.prototype => Function.prototype => Object.prototype => null;
     //构造函数的原型链
-    Function.prototype => Object.prototype => null
-    
+    Function.prototype => Object.prototype => null;
     ```
-    
