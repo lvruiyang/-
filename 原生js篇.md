@@ -70,10 +70,10 @@
     实例对象读取自身属性时，现在自己内部查找，如果查找不到的话，就继续沿着原型链查找，直到找到属性为止，都找不到的话才返回undefined.
     in 操作符就是判断属性是否在实例对象的内部和原型链上存在。instanceof也是判断原型链上是否有该构造函数的原型，for in 遍历操作符能遍历出原型链上的属性。<br>
     ```
-    //构造函数<br>
+    //构造函数
     funciton Func(){}
     Func.prototype.constructor=Func;
-    //实例对象<br>
+    //实例对象
     var obj=new Func();
     obj.constructor=Func;
     //对象的原型链<br>
@@ -81,3 +81,7 @@
     //构造函数的原型链
     Function.prototype => Object.prototype => null;
     ```
+ ##5、js的继承
+    继承说白了就是子类想要拥有父类对象和方法的使用权，要不把属性和方法复制到自己身上，要不可以通过原型链访问到。
+    (1)原型继承
+      就是Child.prototype= new Parent();
