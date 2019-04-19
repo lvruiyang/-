@@ -129,14 +129,14 @@
  	Child._proto_ => Parent
 ES5实现方法：
 ```
-function Parent(){
-        }
-	function Child(){
-	        Parent.call(this);//通过调用call方法，把父类构造函数中的属性复制到子类实例上。
-	}
-	Child.prototype == Object.create(Parent.prototype);
-	Child.prototype.constructor=Child;//把子类原型链构造函数指回
-	Child._proto_=Parent;//或者使用Object.setPrototypeOf(Child, Parent)
+    function Parent(){
+     }
+     function Child(){
+	Parent.call(this);//通过调用call方法，把父类构造函数中的属性复制到子类实例上。
+      }
+      Child.prototype == Object.create(Parent.prototype);
+      Child.prototype.constructor=Child;//把子类原型链构造函数指回
+      Child._proto_=Parent;//或者使用Object.setPrototypeOf(Child, Parent)
 ```
 ## 7、js的内存空间
 (1)js中内存空间分为堆内存与栈内存。
@@ -151,5 +151,15 @@ function Parent(){
    var a = { name: '前端开发' }
    var b = a;
    b.name = '进阶';
+   console.log(a.name)//输出'进阶'，因为引用数据类型赋值是内存地址赋值，同一内存地址指向同一个对象，a和b操作的都是一个对象;
+   //一个很好的面试题
+   var a = {n: 1};
+   var b = a;
+   a.x = a = {n: 2};
+   
+   a	// --> {n:2}
+   b	// --> {n:1,x:n: 2}
+   1、优先级。.的优先级高于=，所以先执行a.x，堆内存中的{n: 1}就会变成{n: 1, x: undefined}，改变之后相应的b.x也变化了，因为指向的是同一个对象。
+   2、赋值操作是从右到左，所以先执行a = {n: 2}，a的引用就被改变了，然后这个返回值又赋值给了a.x，需要注意的是这时候a.x是第一步中的{n: 1, x: undefined}那个对象，其实就是b.x，相当于b.x = {n: 2}
    ```
    
