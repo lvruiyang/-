@@ -120,5 +120,36 @@
   ```
   (5)混入的方式实现继承，就是多次调用call或apply，将要继承的属性复制到子类实例上。
   (6)Es6实现继承
- ## 6、ES6继承的实现
- ES6中的
+ ## 6、ES6的继承
+ ES6中的继承链有两条
+ (1)子类可以继承父类实例上和原型上的属性和方法
+ 	child._proto_ => Child.prototype => Parent.prototype => Function.prototype => Object.prototype => null
+	调用super().执行Parent.call(this),继承父类实例属性
+ (2)子类构造函数可以访问父类构造函数上的静态方法
+ 	Child._proto_ => Parent
+ES5实现方法：
+```
+function Parent(){
+        }
+	function Child(){
+	        Parent.call(this);//通过调用call方法，把父类构造函数中的属性复制到子类实例上。
+	}
+	Child.prototype == Object.create(Parent.prototype);
+	Child.prototype.constructor=Child;//把子类原型链构造函数指回
+	Child._proto_=Parent;//或者使用Object.setPrototypeOf(Child, Parent)
+```
+## 7、js的内存空间
+(1)js中内存空间分为堆内存与栈内存。
+   1、基本类型 --> 保存在栈内存中，因为这些类型在内存中分别占有固定大小的空间，通过按值来访问。基本类型一共有6种：Undefined、Null、Boolean、Number 、String和Symbol
+   2、引用类型 --> 保存在堆内存中，因为这种值的大小不固定，因此不能把它们保存到栈内存中，但内存地址大小是固定的，因此保存在堆内存中，在栈内存中存放的只是该对象的访问地址。当查询引用类型的变量时， 先从栈中读取内存地址， 然后再通过地址找到堆中的值。对于这种，我们把它叫做按引用访问。
+   基本类型的赋值都是值复制，引用类型的赋值都是内存地址的复制，可以有多个变量指向同一个对象。
+   ```
+   var a = 20;
+   var b = a;
+   b = 30;
+   console.log(a)//因为基本数据类型是只复制，因此两者之间互不影响，所以打印20
+   var a = { name: '前端开发' }
+   var b = a;
+   b.name = '进阶';
+   ```
+   
