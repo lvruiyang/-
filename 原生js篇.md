@@ -208,5 +208,4 @@ funciton deepCopy(target){
 	}
 	test()
 	console.log(a)//输出：1
-	
 	```
