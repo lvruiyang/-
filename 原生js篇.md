@@ -69,3 +69,13 @@
     对象的原型_proto_默认指向它的构造函数的原型prototype,而构造函数的原型对象作为一个对象，也拥有自己_proto_,指向所有对象的构造函数Object,最终Object的原型_proto_指向null,这样形成指向链的就是原型链。
     实例对象读取自身属性时，现在自己内部查找，如果查找不到的话，就继续沿着原型链查找，直到找到属性为止，都找不到的话才返回undefined.
     in 操作符就是判断属性是否在实例对象的内部和原型链上存在。instanceof也是判断原型链上是否有该构造函数的原型，for in 遍历操作符能遍历出原型链上的属性。
+    ```
+    //构造函数
+    funciton Func(){}
+    //实例对象
+    var obj=new Func();
+    //对象的原型链
+    obj._proto_ => Func.prototype => Function.prototype => Object.prototype => null;
+    //构造函数的原型链
+    Function.prototype => Object.prototype => null
+    ```
