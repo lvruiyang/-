@@ -70,13 +70,13 @@
     实例对象读取自身属性时，现在自己内部查找，如果查找不到的话，就继续沿着原型链查找，直到找到属性为止，都找不到的话才返回undefined.
     in 操作符就是判断属性是否在实例对象的内部和原型链上存在。instanceof也是判断原型链上是否有该构造函数的原型，for in 遍历操作符能遍历出原型链上的属性。<br>
     ```
-    //构造函数
+    //构造函数<br>
     funciton Func(){}
     Func.prototype.constructor=Func;
-    //实例对象
+    //实例对象<br>
     var obj=new Func();
     obj.constructor=Func;
-    //对象的原型链
+    //对象的原型链<br>
     obj._proto_ => Func.prototype => Function.prototype => Object.prototype => null;
     //构造函数的原型链
     Function.prototype => Object.prototype => null;
