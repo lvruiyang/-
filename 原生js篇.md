@@ -84,16 +84,37 @@
    (1)原型链继承<br>
       就是Child.prototype= new Parent();
       缺点：父类上的引用类型属性被所以实例共享，容易被篡改，并且不能向父类构造函数中传值。<br>
-    (2)借用构造函数继承<br>
+   (2)借用构造函数继承<br>
     
     ```
     	function Parent(){}
-	
 	function Child(){
 	        Parent.call(this);//通过调用call方法，把父类构造函数中的属性复制到子类实例上。
 	}
 	
     ```
        缺点：这种方法只能继承父类实例上的属性，不能继承父类原型链上的属性，并且父类上的方法定义在构造函数内部的话，无法实现复用，每个子类都有父类实例函数的副本，影响性能。<br>
-     (3)组合继承<br>
-     
+ (3)组合继承<br>
+ ```
+ 
+      	function Parent(){
+     	}
+	function Child(){
+	        Parent.call(this);//通过调用call方法，把父类构造函数中的属性复制到子类实例上。
+	}
+	Child.prototype == new Parent();
+```
+	缺点：
+	第一次调用SuperType()：给SubType.prototype写入两个属性name，color。
+	第二次调用SuperType()：给instance1写入两个属性name，color。
+	实例对象instance1上的两个属性就屏蔽了其原型对象SubType.prototype的两个同名属性。所以，组合模式的缺点就是在使用子类创建实例对象时，其原型中会存在两份相同的属性/方法。
+  (4)寄生组合式继承 <br>
+  ```
+  	function Parent(){
+     	}
+	function Child(){
+	        Parent.call(this);//通过调用call方法，把父类构造函数中的属性复制到子类实例上。
+	}
+	Child.prototype == Object.create(Parent.prototype);
+	Child.prototype.constructor=Child;//把子类原型链构造函数指回
+  ```
