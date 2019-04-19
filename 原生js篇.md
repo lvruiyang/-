@@ -199,7 +199,7 @@ funciton deepCopy(target){
 	(1)js变量作用域分为全局作用域与局部作用域（一般指函数作用域）
 	(2)变量的访问查找:变量的访问只能往上进行查找，即当在局部作用域里找不到时，继续向全局作用域里找，再找不到的话就报错：Uncaught ReferenceError: 变量 is not defined。
 	(3)变量声明提升：在非严格模式下，变量在声明时会自动将声明提升到当前所在作用域的顶部，而赋值语句留在当前位置。而函数声明则会自动提升到所在作用域的最顶端。函数参数会形成一个局部作用域。
-	```
+	```javascript
 	var a=1;
 	function test(a){
 		console.log(a)//输出：undefined
