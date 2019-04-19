@@ -110,11 +110,15 @@
 	实例对象instance1上的两个属性就屏蔽了其原型对象SubType.prototype的两个同名属性。所以，组合模式的缺点就是在使用子类创建实例对象时，其原型中会存在两份相同的属性/方法。
   (4)寄生组合式继承 <br>
   ```
-  	function Parent(){
-     	}
+        function Parent(){
+        }
 	function Child(){
 	        Parent.call(this);//通过调用call方法，把父类构造函数中的属性复制到子类实例上。
 	}
 	Child.prototype == Object.create(Parent.prototype);
 	Child.prototype.constructor=Child;//把子类原型链构造函数指回
   ```
+  (5)混入的方式实现继承，就是多次调用call或apply，将要继承的属性复制到子类实例上。
+  (6)Es6实现继承
+ ## 6、ES6继承的实现
+ ES6中的
